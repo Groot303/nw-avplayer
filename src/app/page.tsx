@@ -1,9 +1,11 @@
-export default function Home() {
+"use client";
+
+import Home from "@/components/home";
+
+export default function App() {
 	return (
-		<div>
-			this is nw-player
-			<div>的从二点饿的</div>
-			<button className='btn btn-primary'>测试daisyui按钮</button>
-		</div>
+		<>
+			<Home></Home>
+		</>
 	);
 }
