@@ -1,26 +1,24 @@
 "use client";
 
-import { useRef } from "react";
+import { FC, ReactElement, useRef } from "react";
 import { Navigation, Pagination, Virtual } from "swiper/modules";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-export default function Home() {
-	interface SwiperRef {
-		swiper: {
-			slidePrev: () => void;
-			slideNext: () => void;
-		};
-	}
-	const swiperRef = useRef<SwiperRef | null>(null);
-	const handlePrev = () => {
+import LoginBtn from "../Login";
+
+import { ISwiperRef } from "./typings";
+
+const Home: FC = (): ReactElement => {
+	const swiperRef = useRef<ISwiperRef | null>(null);
+	const handlePrev = (): void => {
 		if (swiperRef.current) {
 			const ele = swiperRef.current;
 			ele.swiper.slidePrev();
 		}
 	};
 
-	const handleNext = () => {
+	const handleNext = (): void => {
 		if (swiperRef.current) {
 			const ele = swiperRef.current;
 			ele.swiper.slideNext();
@@ -30,7 +28,7 @@ export default function Home() {
 	const totalSlides = 5;
 	const virtualData = [];
 	for (let i = 0; i < totalSlides; i++) {
-		virtualData.push(`Virtual Slide ${i}`);
+		virtualData.push(`第 ${i}页`);
 	}
 
 	return (
@@ -42,9 +40,7 @@ export default function Home() {
 						<button className='btn btn-outline  m-3'>体育频道</button>
 						<button className='btn btn-outline  m-3'>音乐频道</button>
 					</div>
-					<div className='login'>
-						<button className='btn btn-outline  '>登录</button>
-					</div>
+					<LoginBtn></LoginBtn>
 				</div>
 				<div className='flex-1 h-4/5  px-32 py-16 '>
 					<div className='w-full h-full  bg-gray-300 relative rounded-3xl'>
@@ -81,4 +77,6 @@ export default function Home() {
 			</div>
 		</>
 	);
-}
+};
+
+export default Home;
